@@ -12,3 +12,4 @@ print(10)
 # Alternative way
 # for x in range(1, 11):
 #     print(x)
+
