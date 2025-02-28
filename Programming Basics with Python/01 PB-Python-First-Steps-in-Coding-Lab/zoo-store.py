@@ -3,4 +3,4 @@ cat_food_packs: int = int(input(f'Enter the number of cat food packs you will bu
 
 food_total_sum: float = dog_food_packs * 2.5 + cat_food_packs * 4
 
-print(f'Total sum: {food_total_sum} lv.')
+print(f'{food_total_sum} lv.')
