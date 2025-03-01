@@ -1,8 +1,8 @@
-area: float = float(input('Enter the area for landscaping: '))
+area: float = float(input())
 
-price_for_sq_m = 7.61
+price_for_sq_m: float = 7.61
 
-total_price = area * price_for_sq_m
+total_price: float = area * price_for_sq_m
 total_discount = 0.18 * total_price
 price_with_discount = total_price - total_discount
 

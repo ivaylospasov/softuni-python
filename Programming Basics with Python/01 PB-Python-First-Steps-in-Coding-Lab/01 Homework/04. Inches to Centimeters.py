@@ -1,5 +1,5 @@
 # simple code
-inch = float(input('Enter a number in inches: '))
+inch = float(input())
 inch_to_cm = inch * 2.54
 print(inch_to_cm)
 

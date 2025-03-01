@@ -1,4 +1,4 @@
-name = input('Enter your name: ')
+name = input()
 print(f'Hello, {name}!')
 
 # Да попитам дали Judge системата приема f'
