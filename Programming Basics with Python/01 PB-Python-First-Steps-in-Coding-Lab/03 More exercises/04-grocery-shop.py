@@ -1,8 +1,8 @@
-vegetables_prise = float(input('Enter the prise of 1 kg vegetables in leva: '))
-fruits_prise = float(input('Enter the prise of of 1 kg fruits in leva: '))
+vegetables_prise = float(input())
+fruits_prise = float(input())
 
-vegetables_weight = int(input('Enter the weight of vegetables in kg: '))
-fruits_weight = int(input('Enter the weight of fruits in kg: '))
+vegetables_weight = int(input())
+fruits_weight = int(input())
 
 cost_vegetables = vegetables_weight * vegetables_prise
 cost_fruits = fruits_weight * fruits_prise
