@@ -12,7 +12,7 @@ front_door_height = 2
 front_door_area = front_door_widht * front_door_height
 
 # Предна и задна стена - квадрати с площ (минус вратата)
-front_and_back_walls_area = 2 * (x * x) - front_door_area
+front_and_back_walls_area = 2 * (x ** 2) - front_door_area
 
 # Страничният прозорец е квадрат
 # Има по един на всяка странична стена
