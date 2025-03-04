@@ -1,32 +1,38 @@
-from pywin.tools.TraceCollector import outputWindow
-
 exam_hour = int(input())
 exam_minute = int(input())
 arrival_hour = int(input())
 arrival_minute = int(input())
 
-# if ((arrival_hour == exam_hour and 0 <= (exam_minute - arrival_minute) <= 30) or
-#         ((exam_hour - arrival_hour) == 1 and (exam_minute + 60 - arrival_minute) <= 30)):
-#     print('Student on time for the exam')
+status = ''
+output = ''
 
-# TODO Да пробвам да изчисля времето в минути, след като представя часовете и след това да извадя стойностите
+exam_time = exam_hour * 60 + exam_minute
+arrival_time = arrival_hour * 60 + arrival_minute
 
-if arrival_hour == exam_hour:
-    if arrival_minute < exam_minute:
-        if exam_minute - arrival_minute <= 30:
-            status = 'On time'
+if exam_time >= arrival_time:
+    if exam_time - arrival_time <= 30:
+        status = 'On time'
+        time_difference = exam_time - arrival_time
+        output = f'{time_difference} minutes before the start'
+    else:
+        status = 'Early'
+        time_difference = exam_time - arrival_time
+        if time_difference <= 59:
+            output = f'{time_difference} minutes before the start'
         else:
-            status = 'Early'
-        minutes_difference = exam_minute - arrival_minute
-        output = f'{minutes_difference} minutes before the start'
-    elif arrival_minute > exam_minute:
-        status = 'Late'
-        minutes_difference = arrival_minute - exam_minute
-        output = f'{minutes_difference} minutes after the start'
-elif arrival_hour > exam_hour:
+            time_difference_hours = time_difference // 60
+            time_difference_minutes = time_difference % 60
+            output = f'{time_difference_hours}:{time_difference_minutes:02d} hours before the start'
+else:
     status = 'Late'
-    if arrival_hour - exam_hour == 1:
-        pass
+    time_difference = arrival_time - exam_time
+    if time_difference <= 59:
+        output = f'{time_difference} minutes after the start'
+    else:
+        time_difference_hours = time_difference // 60
+        time_difference_minutes = time_difference % 60
+        output = f'{time_difference_hours}:{time_difference_minutes:02d} hours after the start'
+
 
 print(status)
 print(output)
