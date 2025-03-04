@@ -1,7 +1,7 @@
 vip_price = 499.99
 normal_price = 249.99
 
-budget = int(input())
+budget = float(input())
 ticket_category = input().lower() # VIP or Normal
 people = int(input())
 
