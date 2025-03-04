@@ -12,7 +12,7 @@ if season == 'spring' or season == 'summer':
     chrysanthemum_price = 2
     roses_price = 4.1
     tulips_price = 2.5
-    if is_official_holiday:
+    if is_official_holiday == 'y':
         chrysanthemum_price = (1 + 0.15) * chrysanthemum_price
         roses_price = (1 + 0.15) * roses_price
         tulips_price = (1 + 0.15) * tulips_price
@@ -20,7 +20,7 @@ else:
     chrysanthemum_price = 3.75
     roses_price = 4.5
     tulips_price = 4.15
-    if is_official_holiday:
+    if is_official_holiday == 'y':
         chrysanthemum_price = (1 + 0.15) * chrysanthemum_price
         roses_price = (1 + 0.15) * roses_price
         tulips_price = (1 + 0.15) * tulips_price
@@ -44,7 +44,5 @@ if all_flowers > 20:
 flowers_arrange = 2
 
 total_price = total_price + flowers_arrange
-
-# TODO Вторият тест не излиза
 
 print(f'{total_price:.2f}')
