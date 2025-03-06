@@ -1,17 +1,36 @@
-my_text = input()
+# my_text = input()
+#
+# vowels_sum = 0
+#
+# for char in my_text:
+#     if char == 'a':
+#         vowels_sum += 1
+#     elif char == 'e':
+#         vowels_sum += 2
+#     elif char == 'i':
+#         vowels_sum += 3
+#     elif char == 'o':
+#         vowels_sum += 4
+#     elif char == 'u':
+#         vowels_sum += 5
+#
+# print(vowels_sum)
 
+# Решение от презентацията
+
+my_text = input()
 vowels_sum = 0
 
-for char in my_text:
-    if char == 'a':
+for i in range(0, len(my_text)):
+    if my_text[i] in 'a':
         vowels_sum += 1
-    elif char == 'e':
+    elif my_text[i] in 'e':
         vowels_sum += 2
-    elif char == 'i':
+    elif my_text[i] in 'i':
         vowels_sum += 3
-    elif char == 'o':
+    elif my_text[i] in 'o':
         vowels_sum += 4
-    elif char == 'u':
+    elif my_text[i] in 'u':
         vowels_sum += 5
 
 print(vowels_sum)
