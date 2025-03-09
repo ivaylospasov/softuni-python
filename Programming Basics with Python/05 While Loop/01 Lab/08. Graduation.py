@@ -23,4 +23,3 @@ while True:
     if total_year_grades == 12:
         print(f'{name} graduated. Average grade: {average_grade:.2f}')
         break
-
