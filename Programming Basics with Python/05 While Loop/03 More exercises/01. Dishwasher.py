@@ -1,4 +1,4 @@
-dishwasher_bottles = int(input())
+dishwasher_bottles = int(input()) # bottles
 
 bottle_volume = 750
 
