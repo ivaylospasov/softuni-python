@@ -15,18 +15,19 @@ while add_symbol != 'End':
             o_counter += 1
         elif add_symbol == 'n' and n_counter == 0:
             n_counter += 1
-        
-        if (add_symbol == 'c' or 
-              add_symbol == 'o' or 
-              add_symbol == 'n') and (c_counter == 1 and 
-                                      o_counter == 1 and 
-                                      n_counter == 1):
-            word += ' '
+        else:
+            word += add_symbol
+
+        if ((add_symbol == 'c' or
+            add_symbol == 'o' or
+            add_symbol == 'n') and
+                (c_counter == 1 and
+                 o_counter == 1 and
+                 n_counter == 1)):
             c_counter = 0
             o_counter = 0
             n_counter = 0
-        else:
-            word += add_symbol
+            word += ' '
 
     add_symbol = input()
 
