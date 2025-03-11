@@ -1,4 +1,5 @@
 word = ''
+printed_word = ''
 
 c_counter = 0
 o_counter = 0
@@ -18,17 +19,13 @@ while add_symbol != 'End':
         else:
             word += add_symbol
 
-        if ((add_symbol == 'c' or
-            add_symbol == 'o' or
-            add_symbol == 'n') and
-                (c_counter == 1 and
-                 o_counter == 1 and
-                 n_counter == 1)):
+        if c_counter == 1 and o_counter == 1 and n_counter == 1:
+            word += ' '
+            printed_word = word
             c_counter = 0
             o_counter = 0
             n_counter = 0
-            word += ' '
 
     add_symbol = input()
 
-print(word)
+print(printed_word)
