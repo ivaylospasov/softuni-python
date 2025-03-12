@@ -1,0 +1,8 @@
+number = int(input())
+
+# outer loop - rows
+# inner loop - columns
+
+current = 1
+
+    

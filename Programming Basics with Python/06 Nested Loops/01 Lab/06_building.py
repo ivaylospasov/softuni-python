@@ -3,15 +3,13 @@ spaces = int(input())
 
 space_number = ''
 
-while floors > 0:
-
-    for floor in range(1, floors + 1):
-        for space in range(0, spaces):
-            print(f'{floor}{floor}{space}', end=' ')
-
-    # else:
-    #     for floor in range(1, floors):
-    #         for space in range(0, spaces):
-    #             print(f'{floor}{floor}{space}', end=' ')
-
-    floors -= 1
+for floor in range(floors, 0, -1):
+    for space in range(spaces):
+        if floor == floors:
+            space_number += f'L{floor}{space} '
+        elif floor % 2 == 0:
+            space_number += f'O{floor}{space} '
+        else:
+            space_number += f'A{floor}{space} '
+    print(space_number)
+    space_number = ''
