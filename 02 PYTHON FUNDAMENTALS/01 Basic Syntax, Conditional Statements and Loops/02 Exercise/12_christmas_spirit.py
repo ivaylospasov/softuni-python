@@ -20,14 +20,17 @@ for day in range(1, days_left_until_christmas + 1):
     if day % 2 == 0:
         total_cost += ornament_set_price * quantity_of_decorations
         total_spirit += ornament_set_points
+
     if day % 3 == 0:
         total_cost += (tree_skirt_price + tree_garland_price) * quantity_of_decorations
         total_spirit += (tree_skirt_points + tree_garland_points)
+
     if day % 5 == 0:
         total_cost += tree_lights_price * quantity_of_decorations
         total_spirit += tree_lights_points
         if day % 3 == 0:
             total_spirit += 30
+
     if day % 10 == 0:
         total_spirit -= 20
         total_cost += (tree_skirt_price + tree_garland_price + tree_lights_price) # buy only one piece of each
