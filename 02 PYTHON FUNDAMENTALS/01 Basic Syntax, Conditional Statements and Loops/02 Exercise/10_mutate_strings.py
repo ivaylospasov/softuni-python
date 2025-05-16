@@ -3,7 +3,7 @@ string_two = input()
 
 for i in range(len(string_one)):
     if string_one[i] != string_two[i]:
-        print(f"{string_two[:i]}{string_two[i]}{string_one[i+1:]}")
+        print(f"{string_two[:i+1]}{string_one[i+1:]}")
 
 
 # Взимаме първата буква от втория низ,
