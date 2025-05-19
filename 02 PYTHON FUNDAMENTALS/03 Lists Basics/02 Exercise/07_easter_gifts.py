@@ -1,30 +1,27 @@
 gifts = input().split()
-command = input().split()
+command = input().split(sep=' ')
 
-stop_command = "No Money"
+STOP_COMMAND = "No Money".split(sep=' ')
 
-print(len(command))
+while command != STOP_COMMAND:
+    if command[0] == "OutOfStock" and command[1] in gifts:
+        for gift in gifts[::-1]:
+            if gift == command[1]:
+                gifts[gifts.index(gift)] = "None"
 
-while command != "No Money":
-    if len(command) == 2:
-        if command[0] == "OutOfStock":
-            for gift in gifts[::-1]:
-                if gift in gifts and gift == command[1]:
-                    gifts[gifts.index(gift)] = "None"
-        elif command[0] == "JustInCase":
-            pass
-    elif len(command) == 3:
-        if command[0] == "Required":
-            pass
+    elif command[0] == "Required":
+        gift_index = int(command[2])
+        if abs(gift_index) < len(gifts):
+            gifts[gift_index] = command[1]
 
-    command = input()
+    elif command[0] == "JustInCase":
+        gifts[-1] = command[1]
 
-# for gift_index in range(len(gifts) - 1, -1, -1):
-#     if gifts[gift_index] == "None":
-#         gifts.remove(gifts[gift_index])
+    command = input().split(sep=' ')
 
-for gift in gifts[::-1]:
-    if gift == "None":
-        gifts.remove(gift)
+if "None" in gifts:
+    for gift in gifts[::-1]:
+        if gift == "None":
+            gifts.remove(gift)
 
-print(gifts)
+print(' '.join(gifts))
