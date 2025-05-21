@@ -21,7 +21,7 @@ for level in fire_levels_as_lists:
             total_fire += water_needed
             seized_fire_cells.append(water_needed)
         else:
-            break
+            pass
 
 print("Cells:")
 for cell in seized_fire_cells:
