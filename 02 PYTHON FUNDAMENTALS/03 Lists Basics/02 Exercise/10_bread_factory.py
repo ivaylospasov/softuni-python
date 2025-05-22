@@ -1,4 +1,5 @@
 energy = 100
+max_energy = 100
 coins = 100
 
 events = input().split("|")
@@ -12,10 +13,11 @@ for element in events:
 for event in events_elements_as_list:
     if event[0] == "rest":
         energy_change = int(event[1])
-        energy += energy_change
-        if energy > 100:
-            energy = 100
-            energy_change = 0
+        if energy + energy_change > max_energy:
+            energy_change = max_energy - energy
+            energy = max_energy
+        else:
+            energy += energy_change
         print(f'You gained {energy_change} energy.')
         print(f"Current energy: {energy}.")
         events_handled += 1
@@ -28,8 +30,8 @@ for event in events_elements_as_list:
             print(f'You earned {coins_change} coins.')
         else:
             energy += 50
-            if energy > 100:
-                energy = 100
+            if energy > max_energy:
+                energy = max_energy
             print(f'You had to rest!')
     else:
         ingredient = event[0]
