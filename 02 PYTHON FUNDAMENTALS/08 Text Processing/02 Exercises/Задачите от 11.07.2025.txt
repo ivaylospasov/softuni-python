@@ -1,0 +1,190 @@
+#1
+def length_is_valid(user: str) -> bool:
+    if 3 <= len(user) <= 16:
+        return True
+    return False
+ 
+ 
+def characters_are_valid(user: str) -> bool:
+    for character in user:
+        if not (character.isalnum() or character == "-" or character == "_"):
+            return False
+    return True
+ 
+ 
+def no_redundant_symbols(user: str) -> bool:
+    if " " in user:
+        return False
+    return True
+ 
+ 
+def username_is_valid(username: str) -> bool:
+    if length_is_valid(username) and \
+            characters_are_valid(username) and \
+            no_redundant_symbols(username):
+        return True
+    return False
+ 
+ 
+usernames = input().split(", ")
+for username in usernames:
+    if username_is_valid(username):
+        print(username)
+ 
+ 
+ 
+#2
+ 
+first_string, second_string = input().split()
+total_sum = 0
+if len(first_string) > len(second_string):
+    for index in range(len(second_string)):
+        total_sum += ord(first_string[index]) * ord(second_string[index])
+    for index in range(len(second_string), len(first_string)):
+        total_sum += ord(first_string[index])
+elif len(second_string) > len(first_string):
+    for index in range(len(first_string)):
+        total_sum += ord(first_string[index]) * ord(second_string[index])
+    for index in range( len(first_string), len(second_string)):
+        total_sum += ord(second_string[index])
+else: # len(second_string) == len(first_string)
+    for index in range(len(second_string)):
+        total_sum += ord(first_string[index]) * ord(second_string[index])
+print(total_sum)
+ 
+ 
+ 
+#3
+path = input().split("\\")
+filename, extension = path[-1].split(".")
+print(f"File name: {filename}")
+print(f"File extension: {extension}")
+ 
+ 
+ 
+#4
+ 
+some_text = input()
+encrypted_text = ""
+for character in some_text:
+    encrypted_character = chr(ord(character) + 3)
+    encrypted_text += encrypted_character
+print(encrypted_text)
+ 
+#5
+ 
+single_string = input()
+for index in range(len(single_string)):
+    if single_string[index] == ":":
+        print(f":{single_string[index+1]}")
+ 
+ 
+#6.1
+ 
+some_string = input()
+final_string = ""
+last_added_character = ""
+for character in some_string:
+    if character != last_added_character:
+        final_string += character
+        last_added_character = character
+print(final_string)
+ 
+ 
+#6.2
+ 
+some_string = input()
+final_string = some_string[0]
+for character in some_string:
+    if character != final_string[-1]:
+        final_string += character
+print(final_string)
+ 
+#7
+some_string = input()
+final_string = ""
+strength = 0
+for index in range(len(some_string)):
+    # Explosion
+    if strength > 0 and some_string[index] != ">":
+        strength -= 1
+    # Explosion mark
+    elif some_string[index] == ">":
+        final_string += ">"  # final_string += some_string[index]
+        strength += int(some_string[index + 1])
+    # No explosion, no explosion mark
+    else:
+        final_string += some_string[index]
+print(final_string)
+ 
+ 
+ 
+#8
+ 
+all_string = input().split()
+total_sum = 0
+for current_string in all_string:
+    first_letter = current_string[0]
+    last_letter = current_string[-1]
+    current_number = int(current_string[1:len(current_string) - 1])
+    if first_letter.isupper():
+        first_letter_position = ord(first_letter) - 64
+        total_sum += current_number / first_letter_position
+    elif first_letter.islower():  # else
+        first_letter_position = ord(first_letter) - 96
+        total_sum += current_number * first_letter_position
+    if last_letter.isupper():
+        last_letter_position = ord(last_letter) - 64
+        total_sum -= last_letter_position
+    elif last_letter.islower():  # else
+        last_letter_position = ord(last_letter) - 96
+        total_sum += last_letter_position
+print(f"{total_sum:.2f}")
+ 
+ 
+#9
+text = input()
+final_text = ""
+sub_string = ""
+repetitions = ""
+for index in range(len(text)):
+    # We have non digit symbol
+    if not text[index].isdigit():
+        sub_string += text[index].upper()
+    # We have digit
+    else:
+        for next_characters in range(index, len(text)):
+            if not text[next_characters].isdigit():
+                break
+            repetitions += text[next_characters]
+        final_text += sub_string * int(repetitions)
+        sub_string = ""
+        repetitions = ""
+print(f"Unique symbols used: {len(set(final_text))}")
+print(final_text)
+ 
+ 
+ 
+#10
+def check_ticket(ticket: str) -> str:
+    if len(ticket) != 20:
+        return "invalid ticket"
+    winning_symbols = ('@', '#', '$', '^')
+    left_part = ticket[:10]
+    right_part = ticket[10:]
+    for match_symbol in winning_symbols:
+        for uninterrupted_match_length in range(10, 5, -1):
+            winning_symbol_repetition = match_symbol * uninterrupted_match_length
+            # Case where we have a winning ticket
+            if winning_symbol_repetition in left_part and winning_symbol_repetition in right_part:
+                # Jackpot ticket
+                if uninterrupted_match_length == 10:
+                    return f'ticket "{ticket}" - {uninterrupted_match_length}{match_symbol} Jackpot!'
+                # Winning ticket (NO Jackpot)
+                return f'ticket "{ticket}" - {uninterrupted_match_length}{match_symbol}'
+    return f'ticket "{ticket}" - no match'
+ 
+ 
+tickets = [ticket.strip() for ticket in input().split(", ")]
+for current_ticket in tickets:
+    print(check_ticket(current_ticket))

@@ -1,0 +1,90 @@
+#1
+ 
+def add_stop(stops_string: str, some_index: int, some_sub_string: str) -> str:
+    if some_index in range(len(stops_string)):
+        stops_string = stops_string[:some_index] + some_sub_string + stops_string[some_index:]
+    return stops_string
+ 
+ 
+def remove_stop(stops_string: str, some_start_index: int, some_end_index: int) -> str:
+    if some_start_index in range(len(stops_string)) and some_end_index in range(len(stops_string)):
+        stops_string = stops_string[:some_start_index] + stops_string[end_index + 1:]
+    return stops_string
+ 
+ 
+def switch(some_stops: str, some_old_string: str, some_new_string: str) -> str:
+    if old_string in some_stops:
+        some_stops = some_stops.replace(some_old_string, some_new_string)
+    return some_stops
+ 
+ 
+stops = input()
+command = input().split(":")
+while command[0] != "Travel":
+    if command[0] == "Add Stop":
+        index, sub_string = int(command[1]), command[2]
+        stops = add_stop(stops, index, sub_string)
+    elif command[0] == "Remove Stop":
+        start_index, end_index = int(command[1]), int(command[2])
+        stops = remove_stop(stops, start_index, end_index)
+    elif command[0] == "Switch":  # else
+        old_string, new_string = command[1], command[2]
+        stops = switch(stops, old_string, new_string)
+    print(stops)
+    command = input().split(":")
+print(f"Ready for world tour! Planned stops: {stops}")
+ 
+#2
+ 
+import re
+ 
+information = input()
+pattern = r"(?i)([#|])([a-z\s]+)\1(\d{2}\/\d{2}\/\d{2})\1(\d+)\1"
+matches = re.findall(pattern, information)
+total_calories = sum([int(calories[3]) for calories in matches])
+days = total_calories // 2000
+print(f"You have food to last you for: {days} days!")
+for item in matches:
+    item_name = item[1]
+    expiration_date = item[2]
+    calories = item[3]
+    print(f"Item: {item_name}, Best before: {expiration_date}, Nutrition: {calories}")
+ 
+#3
+ 
+cities = {}
+command = input().split("||")
+while command[0] != "Sail":
+    city, population, gold = command[0], int(command[1]), int(command[2])
+    if city not in cities.keys():
+        cities[city] = {"population": 0, "gold": 0}
+    cities[city]["population"] += population
+    cities[city]["gold"] += gold
+    command = input().split("||")
+command = input().split("=>")
+while command[0] != "End":
+    if command[0] == "Plunder":
+        town, people, gold = command[1], int(command[2]), int(command[3])
+        print(f"{town} plundered! {gold} gold stolen, {people} citizens killed.")
+        cities[town]["population"] -= people
+        cities[town]["gold"] -= gold
+        if cities[town]["population"] == 0 or cities[town]["gold"] == 0:
+            cities.pop(town)
+            print(f"{town} has been wiped off the map!")
+    elif command[0] == "Prosper":  # else
+        town, gold = command[1], int(command[2])
+        if gold < 0:
+            print("Gold added cannot be a negative number!")
+        else:
+            cities[town]["gold"] += gold
+            total_gold = cities[town]["gold"]
+            print(f"{gold} gold added to the city treasury. {town} now has {total_gold} gold.")
+    command = input().split("=>")
+if cities:
+    print(f"Ahoy, Captain! There are {len(cities)} wealthy settlements to go to:")
+    for town, town_data in cities.items():
+        people = town_data["population"]
+        gold = town_data["gold"]
+        print(f"{town} -> Population: {people} citizens, Gold: {gold} kg")
+else:
+    print("Ahoy, Captain! All targets have been plundered and destroyed!")
