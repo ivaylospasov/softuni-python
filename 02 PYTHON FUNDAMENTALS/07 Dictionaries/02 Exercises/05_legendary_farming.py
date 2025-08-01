@@ -1,7 +1,3 @@
-#"Shadowmourne" - requires 250 Shards
-#"Valanyr" - requires 250 Fragments
-#"Dragonwrath" - requires 250 Motes
-
 key_fragments = {
     "shards": [0, "Shadowmourne"],
     "fragments": [0, "Valanyr"],
