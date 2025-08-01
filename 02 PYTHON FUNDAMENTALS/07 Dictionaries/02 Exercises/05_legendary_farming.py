@@ -8,15 +8,27 @@ key_fragments = {
     "Motes": 0
 }
 
-junk = {}
+items_list = []
+items_quantity = []
 
-while key_fragments["Shards"] < 250 \
-        or key_fragments["Fragments"] < 250 \
-        or key_fragments["Motes"] < 250:
-    items = input().split()
-;
-    for item in range(1, len(items) + 1, 2):
-        if item not in key_fragments.keys():
-            continue
-        else:
-            print(item)
+
+# while key_fragments["Shards"] < 250 \
+#         or key_fragments["Fragments"] < 250 \
+#         or key_fragments["Motes"] < 250:
+#     items = input().split()
+
+items = input().split()
+
+fragments = items[1::2]
+quantity = items[::2]
+
+for index, fragment in enumerate(fragments):
+    if fragments[index] not in key_fragments.keys():
+        key_fragments[fragments[index]] = int(quantity[index])
+    else:
+        key_fragments[fragments[index]] += int(quantity[index])
+
+
+print(fragments)
+print(quantity)
+print(key_fragments)
