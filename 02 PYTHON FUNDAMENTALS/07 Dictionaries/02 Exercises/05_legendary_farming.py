@@ -3,32 +3,43 @@
 #"Dragonwrath" - requires 250 Motes
 
 key_fragments = {
-    "Shards": 0,
-    "Fragments": 0,
-    "Motes": 0
+    "shards": [0, "Shadowmourne"],
+    "fragments": [0, "Valanyr"],
+    "motes": [0, "Dragonwrath"]
 }
 
-items_list = []
-items_quantity = []
+legendary_item_obtained = False
 
+while not legendary_item_obtained:
 
-# while key_fragments["Shards"] < 250 \
-#         or key_fragments["Fragments"] < 250 \
-#         or key_fragments["Motes"] < 250:
-#     items = input().split()
+    items = input().lower().split()
 
-items = input().split()
+    fragments = items[1::2]
+    quantity = items[::2]
 
-fragments = items[1::2]
-quantity = items[::2]
+    for fragment, quantity in zip(fragments, quantity):
 
-for index, fragment in enumerate(fragments):
-    if fragments[index] not in key_fragments.keys():
-        key_fragments[fragments[index]] = int(quantity[index])
-    else:
-        key_fragments[fragments[index]] += int(quantity[index])
+        if fragment in key_fragments.keys():
+            key_fragments[fragment][0] += int(quantity)
 
+            if key_fragments["shards"][0] >= 250:
+                print(f'{key_fragments["shards"][1]} obtained!')
+                key_fragments["shards"][0] -= 250
+                legendary_item_obtained = True
+                break
+            elif key_fragments["fragments"][0] >= 250:
+                print(f'{key_fragments["fragments"][1]} obtained!')
+                key_fragments["fragments"][0] -= 250
+                legendary_item_obtained = True
+                break
+            elif key_fragments["motes"][0] >= 250:
+                print(f'{key_fragments["motes"][1]} obtained!')
+                key_fragments["motes"][0] -= 250
+                legendary_item_obtained = True
+                break
 
-print(fragments)
-print(quantity)
-print(key_fragments)
+        else:
+            key_fragments[fragment] = [int(quantity)]
+
+for key, value in key_fragments.items():
+    print(f'{key}: {value[0]}')
